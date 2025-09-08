@@ -18,3 +18,13 @@ thumbs.forEach((thumb, index) => {
     thumb.classList.add('active-thumb');
   });
 });
+
+// Script para el menú responsive vision de movil
+document.addEventListener("DOMContentLoaded", () => {
+  const menuToggle = document.getElementById("menu-toggle");
+  const navMenu = document.getElementById("nav-menu");
+
+  menuToggle.addEventListener("click", () => {
+    navMenu.classList.toggle("active");
+  });
+});
