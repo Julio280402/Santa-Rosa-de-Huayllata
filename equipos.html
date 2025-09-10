@@ -31,36 +31,26 @@
 
   <main>
     <h1 class="section-title">Equipos</h1>
-    <p class="section-subtitle">Fundación 2020 · Delegados y familias · Diseños variados en camisetas</p>
+    <p class="section-subtitle">Fundación 2020 · Delegados y familias</p>
 
     <!-- Filtros y buscador -->
     <div class="filters" role="region" aria-label="Filtros de equipos">
       <div class="field">
-        <label for="search">Buscar equipo</label>
+        <label for="search">Buscar (Nombre, Delegado o Deporte)</label>
         <input id="search" type="text" placeholder="Ej: DEFENSOR TACNA" />
       </div>
       <div class="field">
-        <label for="categoria">Categoría</label>
+        <label for="categoria">Deporte</label>
         <select id="categoria">
-          <option value="">Todas</option>
-          <option value="Primera">Primera</option>
-          <option value="Reserva">Reserva</option>
-          <option value="Femenino">Femenino</option>
+          <option value="">Todos</option>
+          <option value="Futbol">Fútbol</option>
+          <option value="Voley">Vóley</option>
         </select>
       </div>
       <div class="field">
-        <label for="familia">Familia</label>
-        <select id="familia">
-          <option value="">Todas</option>
-          <option value="Quispe">Quispe</option>
-          <option value="Mamani">Mamani</option>
-          <option value="Choque">Choque</option>
-          <option value="Tipjhacollo">Tipjhacollo</option>
-          <option value="Apaza">Apaza</option>
-          <option value="Huanca">Huanca</option>
-          <option value="Flores">Flores</option>
-          <option value="Calla">Calla</option>
-          <option value="Pari">Pari</option>
+        <label for="delegado">Delegado</label>
+        <select id="delegado">
+          <option value="">Todos</option>
         </select>
       </div>
     </div>
@@ -69,33 +59,70 @@
     <section id="teams" class="teams-grid" aria-live="polite"></section>
   </main>
 
+  <!-- Modal Plantilla -->
+  <div id="plantilla-modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="plantilla-title" aria-modal="true" style="display:none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(2px); z-index: 2000;">
+    <div class="modal-dialog" style="background:#141414; border:1px solid rgba(255,255,255,0.15); color:#fff; max-width: 720px; margin: 6vh auto; border-radius: 12px; box-shadow: 0 12px 30px rgba(0,0,0,0.5); overflow: hidden;">
+      <div class="modal-header" style="display:flex; justify-content:space-between; align-items:center; padding:14px 16px; border-bottom:1px solid rgba(255,255,255,0.1);">
+        <h2 id="plantilla-title" style="font-size:1.2rem; font-weight:800; color:#ffe600; margin:0;">Plantilla</h2>
+        <button id="modal-close" aria-label="Cerrar" style="background:none; border:1px solid rgba(255,255,255,0.2); color:#fff; border-radius:8px; padding:6px 10px; cursor:pointer;">✕</button>
+      </div>
+      <div class="modal-body" style="padding:14px 16px; display:grid; gap:16px;">
+        <div class="modal-section">
+          <h3 style="margin:0 0 8px; font-size:1rem; color:#ffe600;">Titulares</h3>
+          <ul id="lista-titulares" style="display:grid; grid-template-columns:repeat(2,1fr); gap:8px; list-style:none; padding:0; margin:0;">
+            <!-- titulares -->
+          </ul>
+        </div>
+        <div class="modal-section">
+          <h3 style="margin:0 0 8px; font-size:1rem; color:#ffe600;">Suplentes</h3>
+          <ul id="lista-suplentes" style="display:grid; grid-template-columns:repeat(2,1fr); gap:8px; list-style:none; padding:0; margin:0;">
+            <!-- suplentes -->
+          </ul>
+        </div>
+      </div>
+      <div class="modal-footer" style="padding:12px 16px; border-top:1px solid rgba(255,255,255,0.1); display:flex; justify-content:flex-end; gap:8px;">
+        <button id="modal-ok" style="background:#ffe600; color:#222; font-weight:800; padding:10px 14px; border:none; border-radius:8px; cursor:pointer;">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
   <footer>
     <p>© 2025 Santa Rosa de Huayllata - Todos los derechos reservados</p>
   </footer>
 
   <script src="assets/js/script.js"></script>
   <script>
-    // Datos de equipos específicos para esta página
+    // Datos de equipos específicos para esta página - 9 Fútbol + 9 Vóley
     const equipos = [
-      { nombre:'CLUB DEFENSOR TACNA', categoria:'Primera', familia:'Quispe', fundacion:'2020', delegado:'Juan Quispe', escudo:'imagenes/insignias/club_defensor_tacna.png' },
-      { nombre:'REAL SANTA ROSA', categoria:'Primera', familia:'Mamani', fundacion:'2020', delegado:'Pedro Mamani', escudo:'imagenes/insignias/real_santa_rosa.png' },
-      { nombre:'CENTRAL SANTA ROSA', categoria:'Reserva', familia:'Choque', fundacion:'2020', delegado:'Luis Choque', escudo:'imagenes/insignias/central_santa_rosa.png' },
-      { nombre:'CLUB DEPORTIVO GENERACION TIPJHANI', categoria:'Primera', familia:'Tipjhacollo', fundacion:'2020', delegado:'Mario Tipjhacollo', escudo:'imagenes/insignias/generacion_tipjhani.png' },
-      { nombre:'UNIÓN CENTRAL SANTA ROSA', categoria:'Reserva', familia:'Apaza', fundacion:'2020', delegado:'Carlos Apaza', escudo:'imagenes/insignias/union_central_santa_rosa.png' },
-      { nombre:'CLUB ALIANZA ARICA', categoria:'Primera', familia:'Huanca', fundacion:'2020', delegado:'Rosa Huanca', escudo:'imagenes/insignias/club_alianza_arica.png' },
-      { nombre:'CLUB DEPORTIVO CULTURAL', categoria:'Reserva', familia:'Flores', fundacion:'2020', delegado:'Jorge Flores', escudo:'imagenes/insignias/club_deportivo_cultural.png' },
-      { nombre:'JUVENTUD CENTRAL SANTA ROSA', categoria:'Femenino', familia:'Calla', fundacion:'2020', delegado:'Elena Calla', escudo:'imagenes/insignias/juventud_central_santa_rosa.png' },
-      { nombre:'UNIÓN SANTA ROSA', categoria:'Primera', familia:'Pari', fundacion:'2020', delegado:'Miguel Pari', escudo:'imagenes/insignias/union_santa_rosa.png' }
+      { nombre:'CLUB DEFENSOR TACNA', categoria:'Futbol', familia:'Quispe', fundacion:'2020', delegado:'Juan Quispe', escudo:'imagenes/insignias/club_defensor_tacna.png' },
+      { nombre:'REAL SANTA ROSA', categoria:'Futbol', familia:'Mamani', fundacion:'2020', delegado:'Pedro Mamani', escudo:'imagenes/insignias/real_santa_rosa.png' },
+      { nombre:'CENTRAL SANTA ROSA', categoria:'Futbol', familia:'Choque', fundacion:'2020', delegado:'Luis Choque', escudo:'imagenes/insignias/central_santa_rosa.png' },
+      { nombre:'CLUB DEPORTIVO GENERACION TIPJHANI', categoria:'Futbol', familia:'Tipjhacollo', fundacion:'2020', delegado:'Mario Tipjhacollo', escudo:'imagenes/insignias/generacion_tipjhani.png' },
+      { nombre:'UNIÓN CENTRAL SANTA ROSA', categoria:'Futbol', familia:'Apaza', fundacion:'2020', delegado:'Carlos Apaza', escudo:'imagenes/insignias/union_central_santa_rosa.png' },
+      { nombre:'CLUB ALIANZA ARICA', categoria:'Futbol', familia:'Huanca', fundacion:'2020', delegado:'Rosa Huanca', escudo:'imagenes/insignias/club_alianza_arica.png' },
+      { nombre:'CLUB DEPORTIVO CULTURAL', categoria:'Futbol', familia:'Flores', fundacion:'2020', delegado:'Jorge Flores', escudo:'imagenes/insignias/club_deportivo_cultural.png' },
+      { nombre:'ATLÉTICO HUAYLLATA', categoria:'Futbol', familia:'Ramos', fundacion:'2020', delegado:'Diego Ramos', escudo:'imagenes/insignias/atletico_huayllata.png' },
+      { nombre:'DEPORTIVO ILAVE', categoria:'Futbol', familia:'Torres', fundacion:'2020', delegado:'Ana Torres', escudo:'imagenes/insignias/deportivo_ilave.png' },
+
+      { nombre:'JUVENTUD CENTRAL SANTA ROSA', categoria:'Voley', familia:'Calla', fundacion:'2020', delegado:'Elena Calla', escudo:'imagenes/insignias/juventud_central_santa_rosa.png' },
+      { nombre:'UNIÓN SANTA ROSA', categoria:'Voley', familia:'Pari', fundacion:'2020', delegado:'Miguel Pari', escudo:'imagenes/insignias/union_santa_rosa.png' },
+      { nombre:'REAL SANTA ROSA (V)', categoria:'Voley', familia:'Mamani', fundacion:'2020', delegado:'Pedro Mamani', escudo:'imagenes/insignias/real_santa_rosa_v.png' },
+      { nombre:'CENTRAL SANTA ROSA (V)', categoria:'Voley', familia:'Choque', fundacion:'2020', delegado:'Luis Choque', escudo:'imagenes/insignias/central_santa_rosa_v.png' },
+      { nombre:'GENERACION TIPJHANI (V)', categoria:'Voley', familia:'Tipjhacollo', fundacion:'2020', delegado:'Mario Tipjhacollo', escudo:'imagenes/insignias/generacion_tipjhani_v.png' },
+      { nombre:'UNIÓN CENTRAL SR (V)', categoria:'Voley', familia:'Apaza', fundacion:'2020', delegado:'Carlos Apaza', escudo:'imagenes/insignias/union_central_sr_v.png' },
+      { nombre:'ALIANZA ARICA (V)', categoria:'Voley', familia:'Huanca', fundacion:'2020', delegado:'Rosa Huanca', escudo:'imagenes/insignias/alianza_arica_v.png' },
+      { nombre:'DEPORTIVO CULTURAL (V)', categoria:'Voley', familia:'Flores', fundacion:'2020', delegado:'Jorge Flores', escudo:'imagenes/insignias/deportivo_cultural_v.png' },
+      { nombre:'UNIÓN SANTA ROSA (V2)', categoria:'Voley', familia:'Pari', fundacion:'2020', delegado:'Miguel Pari', escudo:'imagenes/insignias/union_santa_rosa_v2.png' }
     ];
 
     const $container = document.getElementById('teams');
     const $search = document.getElementById('search');
     const $categoria = document.getElementById('categoria');
-    const $familia = document.getElementById('familia');
+    const $delegado = document.getElementById('delegado');
 
     function card(team) {
       return `
-        <article class="team-card" data-nombre="${team.nombre.toLowerCase()}" data-categoria="${team.categoria}" data-familia="${team.familia.toLowerCase()}">
+        <article class="team-card" data-nombre="${team.nombre.toLowerCase()}" data-categoria="${team.categoria}" data-delegado="${team.delegado.toLowerCase()}">
           <div class="crest"><img src="${team.escudo}" alt="Escudo ${team.nombre}" /></div>
           <div class="team-body">
             <div class="team-name">
@@ -105,7 +132,7 @@
             <div class="meta">Fundación: <strong>${team.fundacion}</strong></div>
             <div class="meta">Delegado: <strong>${team.delegado}</strong></div>
             <div class="meta">Familia: <strong>${team.familia}</strong></div>
-            <div class="meta">Camisetas: <em>Diseños variados (sin colores fijos)</em></div>
+            <div class="actions"><a href="#" class="btn-ver-galeria btn-plantilla" data-equipo="${team.nombre}">Ver plantilla</a></div>
           </div>
         </article>`;
     }
@@ -120,16 +147,76 @@
     function applyFilters() {
       const q = $search.value.trim().toLowerCase();
       const cat = $categoria.value;
-      const fam = $familia.value.toLowerCase();
+      const del = $delegado.value.toLowerCase();
       const filtered = equipos.filter(t =>
-        (q ? t.nombre.toLowerCase().includes(q) : True) &&
-        (cat ? t.categoria == cat : True) &&
-        (fam ? t.familia.toLowerCase() == fam : True)
+        (q ? (t.nombre.toLowerCase().includes(q) || t.delegado.toLowerCase().includes(q) || t.categoria.toLowerCase().includes(q)) : true) &&
+        (cat ? t.categoria === cat : true) &&
+        (del ? t.delegado.toLowerCase() === del : true)
       );
       render(filtered);
     }
 
-    [$search, $categoria, $familia].forEach(el => el.addEventListener('input', applyFilters));
+    function populateDelegados() {
+      const delegados = [...new Set(equipos.map(e => e.delegado))].sort();
+      $delegado.innerHTML = '<option value="">Todos</option>' + delegados.map(d => `<option value="${d}">${d}</option>`).join('');
+    }
+
+    function avatar(text) {
+      const t = encodeURIComponent(text);
+      return `https://placehold.co/72x72/png?text=${t}&font=source-sans-pro&size=18`;
+    }
+
+    // Modal lógica
+    const modal = document.getElementById('plantilla-modal');
+    const closeBtn = document.getElementById('modal-close');
+    const okBtn = document.getElementById('modal-ok');
+    const listaTit = document.getElementById('lista-titulares');
+    const listaSup = document.getElementById('lista-suplentes');
+
+    function openModal(equipo) {
+      const titulares = [
+        {n:'J. Pérez', img: avatar('JP')},
+        {n:'L. Gómez', img: avatar('LG')},
+        {n:'R. Torres', img: avatar('RT')},
+        {n:'M. Quispe', img: avatar('MQ')},
+        {n:'P. Mamani', img: avatar('PM')},
+        {n:'E. Calla', img: avatar('EC')},
+        {n:'M. Pari', img: avatar('MP')},
+      ];
+      const suplentes = [
+        {n:'J. Huanca', img: avatar('JH')},
+        {n:'K. Nina', img: avatar('KN')},
+        {n:'D. Flores', img: avatar('DF')},
+        {n:'H. Quispe', img: avatar('HQ')},
+      ];
+
+      listaTit.innerHTML = titulares.map(p => `<li style="padding:8px 10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:8px; display:flex; align-items:center; gap:10px;"><img style="width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,0.12); object-fit:cover;" src="${p.img}" alt="${p.n}"/><span style="color:#fff;">${p.n}</span></li>`).join('');
+      listaSup.innerHTML = suplentes.map(p => `<li style="padding:8px 10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:8px; display:flex; align-items:center; gap:10px;"><img style="width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,0.12); object-fit:cover;" src="${p.img}" alt="${p.n}"/><span style="color:#fff;">${p.n}</span></li>`).join('');
+
+      document.getElementById('plantilla-title').textContent = `Plantilla — ${equipo}`;
+      modal.style.display = 'block';
+      modal.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeModal() {
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden', 'true');
+    }
+
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.btn-plantilla');
+      if (btn) {
+        e.preventDefault();
+        openModal(btn.dataset.equipo);
+      }
+    });
+
+    [closeBtn, okBtn].forEach(b => b && b.addEventListener('click', closeModal));
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+    [$search, $categoria, $delegado].forEach(el => el.addEventListener('input', applyFilters));
+    populateDelegados();
     render(equipos);
   </script>
 </body>
