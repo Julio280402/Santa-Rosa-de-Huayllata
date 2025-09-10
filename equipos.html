@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Santa Rosa de Huayllata - Equipos</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="imagenes/logos/logo.png" alt="Logo Santa Rosa" class="logo-img" />
+      <div class="logo-text">
+        <span class="logo-title">Santa Rosa de Huayllata</span>
+        <span class="logo-subtitle">Centro Poblado - Ilave</span>
+      </div>
+    </div>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú de navegación" aria-expanded="false">☰</button>
+    <nav id="nav-menu" aria-label="Principal">
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="equipos.html" class="active">Equipos</a></li>
+        <li><a href="partidos.html">Partidos</a></li>
+        <li><a href="posiciones.html">Posiciones</a></li>
+        <li><a href="bases.html">Bases</a></li>
+        <li><a href="apoyo.html">Apoyo</a></li>
+        <li><a href="galeria.html">Galería</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1 class="section-title">Equipos</h1>
+    <p class="section-subtitle">Fundación 2020 · Delegados y familias · Diseños variados en camisetas</p>
+
+    <!-- Filtros y buscador -->
+    <div class="filters" role="region" aria-label="Filtros de equipos">
+      <div class="field">
+        <label for="search">Buscar equipo</label>
+        <input id="search" type="text" placeholder="Ej: DEFENSOR TACNA" />
+      </div>
+      <div class="field">
+        <label for="categoria">Categoría</label>
+        <select id="categoria">
+          <option value="">Todas</option>
+          <option value="Primera">Primera</option>
+          <option value="Reserva">Reserva</option>
+          <option value="Femenino">Femenino</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="familia">Familia</label>
+        <select id="familia">
+          <option value="">Todas</option>
+          <option value="Quispe">Quispe</option>
+          <option value="Mamani">Mamani</option>
+          <option value="Choque">Choque</option>
+          <option value="Tipjhacollo">Tipjhacollo</option>
+          <option value="Apaza">Apaza</option>
+          <option value="Huanca">Huanca</option>
+          <option value="Flores">Flores</option>
+          <option value="Calla">Calla</option>
+          <option value="Pari">Pari</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Rejilla de equipos -->
+    <section id="teams" class="teams-grid" aria-live="polite"></section>
+  </main>
+
+  <footer>
+    <p>© 2025 Santa Rosa de Huayllata - Todos los derechos reservados</p>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+  <script>
+    // Datos de equipos específicos para esta página
+    const equipos = [
+      { nombre:'CLUB DEFENSOR TACNA', categoria:'Primera', familia:'Quispe', fundacion:'2020', delegado:'Juan Quispe', escudo:'imagenes/insignias/club_defensor_tacna.png' },
+      { nombre:'REAL SANTA ROSA', categoria:'Primera', familia:'Mamani', fundacion:'2020', delegado:'Pedro Mamani', escudo:'imagenes/insignias/real_santa_rosa.png' },
+      { nombre:'CENTRAL SANTA ROSA', categoria:'Reserva', familia:'Choque', fundacion:'2020', delegado:'Luis Choque', escudo:'imagenes/insignias/central_santa_rosa.png' },
+      { nombre:'CLUB DEPORTIVO GENERACION TIPJHANI', categoria:'Primera', familia:'Tipjhacollo', fundacion:'2020', delegado:'Mario Tipjhacollo', escudo:'imagenes/insignias/generacion_tipjhani.png' },
+      { nombre:'UNIÓN CENTRAL SANTA ROSA', categoria:'Reserva', familia:'Apaza', fundacion:'2020', delegado:'Carlos Apaza', escudo:'imagenes/insignias/union_central_santa_rosa.png' },
+      { nombre:'CLUB ALIANZA ARICA', categoria:'Primera', familia:'Huanca', fundacion:'2020', delegado:'Rosa Huanca', escudo:'imagenes/insignias/club_alianza_arica.png' },
+      { nombre:'CLUB DEPORTIVO CULTURAL', categoria:'Reserva', familia:'Flores', fundacion:'2020', delegado:'Jorge Flores', escudo:'imagenes/insignias/club_deportivo_cultural.png' },
+      { nombre:'JUVENTUD CENTRAL SANTA ROSA', categoria:'Femenino', familia:'Calla', fundacion:'2020', delegado:'Elena Calla', escudo:'imagenes/insignias/juventud_central_santa_rosa.png' },
+      { nombre:'UNIÓN SANTA ROSA', categoria:'Primera', familia:'Pari', fundacion:'2020', delegado:'Miguel Pari', escudo:'imagenes/insignias/union_santa_rosa.png' }
+    ];
+
+    const $container = document.getElementById('teams');
+    const $search = document.getElementById('search');
+    const $categoria = document.getElementById('categoria');
+    const $familia = document.getElementById('familia');
+
+    function card(team) {
+      return `
+        <article class="team-card" data-nombre="${team.nombre.toLowerCase()}" data-categoria="${team.categoria}" data-familia="${team.familia.toLowerCase()}">
+          <div class="crest"><img src="${team.escudo}" alt="Escudo ${team.nombre}" /></div>
+          <div class="team-body">
+            <div class="team-name">
+              <span>${team.nombre}</span>
+              <span class="badge">${team.categoria}</span>
+            </div>
+            <div class="meta">Fundación: <strong>${team.fundacion}</strong></div>
+            <div class="meta">Delegado: <strong>${team.delegado}</strong></div>
+            <div class="meta">Familia: <strong>${team.familia}</strong></div>
+            <div class="meta">Camisetas: <em>Diseños variados (sin colores fijos)</em></div>
+          </div>
+        </article>`;
+    }
+
+    function render(list) {
+      $container.innerHTML = list.map(card).join('');
+      if (!list.length) {
+        $container.innerHTML = `<div class="team-card" style="grid-column: 1/-1; text-align:center;">Sin resultados para los filtros aplicados.</div>`;
+      }
+    }
+
+    function applyFilters() {
+      const q = $search.value.trim().toLowerCase();
+      const cat = $categoria.value;
+      const fam = $familia.value.toLowerCase();
+      const filtered = equipos.filter(t =>
+        (q ? t.nombre.toLowerCase().includes(q) : True) &&
+        (cat ? t.categoria == cat : True) &&
+        (fam ? t.familia.toLowerCase() == fam : True)
+      );
+      render(filtered);
+    }
+
+    [$search, $categoria, $familia].forEach(el => el.addEventListener('input', applyFilters));
+    render(equipos);
+  </script>
+</body>
+</html>

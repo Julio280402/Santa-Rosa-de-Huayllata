@@ -1,52 +1,49 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Santa Rosa de Huayllata</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
-  
-
-    <!-- HEADER -->
+  <!-- HEADER -->
   <header>
-  <div class="logo">
-    <img src="imagenes/logos/logo.png" alt="Logo Santa Rosa" class="logo-img">
-    <div class="logo-text">
-      <span class="logo-title">Santa Rosa de Huayllata</span>
-      <span class="logo-subtitle">Centro Poblado - Ilave</span>
+    <div class="logo">
+      <img src="imagenes/logos/logo.png" alt="Logo Santa Rosa" class="logo-img" />
+      <div class="logo-text">
+        <span class="logo-title">Santa Rosa de Huayllata</span>
+        <span class="logo-subtitle">Centro Poblado - Ilave</span>
+      </div>
     </div>
-  </div>
-  
-   <!-- Botón hamburguesa para el menú de movil-->
-  <button class="menu-toggle" id="menu-toggle">
-    ☰
-  </button>
-  
-  <!-- Inicio del bloque que esta adaptado para vision de pc y movil -->
-  <nav id="nav-menu">
-    <ul>
-      <li><a href="index.html" class="active">Inicio</a></li>
-      <li><a href="#equipos">Equipos</a></li>
-      <li><a href="#partidos">Partidos</a></li>
-      <li><a href="#posiciones">Posiciones</a></li>
-      <li><a href="#bases">Bases</a></li>
-      <li><a href="#apoyo">Apoyo</a></li>
-      <li><a href="galeria.html">Galería</a></li>
-    </ul>
-  </nav>
-</header>
-<!-- Fin del bloque que esta adaptado para vision de pc y movil -->
 
-  <!-- HERO -->
-  <section class="hero" id="inicio">
-    <div class="hero-text">
-      <h1>Bienvenidos a Santa Rosa de Huayllata</h1>
-      <p>Un espacio para compartir nuestra cultura, tradición y comunidad.</p>
-      <button id="miBoton">Descubrir más</button>
-    </div>
-  </section>
+    <!-- Botón hamburguesa para el menú de móvil -->
+    <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú de navegación" aria-expanded="false">☰</button>
+
+    <!-- Menú -->
+    <nav id="nav-menu" aria-label="Principal">
+      <ul>
+        <li><a href="index.html" class="active">Inicio</a></li>
+        <li><a href="equipos.html">Equipos</a></li>
+        <li><a href="partidos.html">Partidos</a></li>
+        <li><a href="posiciones.html">Posiciones</a></li>
+        <li><a href="bases.html">Bases</a></li>
+        <li><a href="apoyo.html">Apoyo</a></li>
+        <li><a href="galeria.html">Galería</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+      <div class="hero-text">
+        <h1>Bienvenidos a Santa Rosa de Huayllata</h1>
+        <p>Un espacio para compartir nuestra cultura, tradición y comunidad.</p>
+        <button id="miBoton">Descubrir más</button>
+      </div>
+    </section>
+  </main>
 
   <!-- FOOTER -->
   <footer>
