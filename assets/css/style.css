@@ -15,7 +15,9 @@
 
 body {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  background: var(--bg);
+  background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
+              url("../../imagenes/fondos/fondo_de_pagina.jpg") no-repeat center center fixed;
+  background-size: cover;
   color: #fff;
   line-height: 1.6;
 }
@@ -102,7 +104,7 @@ main {
 }
 
 .section-title {
-  font-size: 2.6rem;
+  font-size: 3.8rem;
   font-weight: 800;
   color: var(--accent);
   text-align: center;
@@ -149,6 +151,8 @@ main {
   border-radius: 10px;
   outline: none;
   transition: border-color 0.2s ease;
+  height: 42px;
+  box-sizing: border-box;
 }
 
 .filters input:focus,
@@ -254,6 +258,48 @@ main {
 .btn-ver-galeria:hover,
 .btn-plantilla:hover {
   background: #e6cf00;
+}
+
+/* Ajuste de fila de jugador en modal */
+.modal-body li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+}
+
+/* Ajuste de imagen y nombre */
+.modal-body li img {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  object-fit: cover;
+}
+
+.modal-body li span:not(.player-number) {
+  flex-grow: 1;
+  color: #fff;
+  margin-left: 10px;
+}
+
+/* Pastilla de número de jugador */
+.player-number {
+  margin-left: auto;
+  padding: 3px 10px;
+  background: var(--accent);
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #222;
+  min-width: 28px;
+  text-align: center;
+  flex-shrink: 0;
 }
 
 /* Footer */

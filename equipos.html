@@ -6,7 +6,7 @@
   <title>Santa Rosa de Huayllata - Equipos</title>
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
-<body>
+<body id="equipos">
   <header>
     <div class="logo">
       <img src="imagenes/logos/logo.png" alt="Logo Santa Rosa" class="logo-img" />
@@ -175,23 +175,23 @@
 
     function openModal(equipo) {
       const titulares = [
-        {n:'J. Pérez', img: avatar('JP')},
-        {n:'L. Gómez', img: avatar('LG')},
-        {n:'R. Torres', img: avatar('RT')},
-        {n:'M. Quispe', img: avatar('MQ')},
-        {n:'P. Mamani', img: avatar('PM')},
-        {n:'E. Calla', img: avatar('EC')},
-        {n:'M. Pari', img: avatar('MP')},
+        {n:'J. Pérez', img: avatar('JP'), num:'10'},
+        {n:'L. Gómez', img: avatar('LG'), num:'7'},
+        {n:'R. Torres', img: avatar('RT'), num:'9'},
+        {n:'M. Quispe', img: avatar('MQ'), num:'4'},
+        {n:'P. Mamani', img: avatar('PM'), num:'6'},
+        {n:'E. Calla', img: avatar('EC'), num:'8'},
+        {n:'M. Pari', img: avatar('MP'), num:'11'},
       ];
       const suplentes = [
-        {n:'J. Huanca', img: avatar('JH')},
-        {n:'K. Nina', img: avatar('KN')},
-        {n:'D. Flores', img: avatar('DF')},
-        {n:'H. Quispe', img: avatar('HQ')},
+        {n:'J. Huanca', img: avatar('JH'), num:'12'},
+        {n:'K. Nina', img: avatar('KN'), num:'14'},
+        {n:'D. Flores', img: avatar('DF'), num:'15'},
+        {n:'H. Quispe', img: avatar('HQ'), num:'16'},
       ];
 
-      listaTit.innerHTML = titulares.map(p => `<li style="padding:8px 10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:8px; display:flex; align-items:center; gap:10px;"><img style="width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,0.12); object-fit:cover;" src="${p.img}" alt="${p.n}"/><span style="color:#fff;">${p.n}</span></li>`).join('');
-      listaSup.innerHTML = suplentes.map(p => `<li style="padding:8px 10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:8px; display:flex; align-items:center; gap:10px;"><img style="width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,0.12); object-fit:cover;" src="${p.img}" alt="${p.n}"/><span style="color:#fff;">${p.n}</span></li>`).join('');
+      listaTit.innerHTML = titulares.map(p => `<li style="padding:8px 10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:8px; display:flex; align-items:center; gap:10px;"><img style="width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,0.12); object-fit:cover;" src="${p.img}" alt="${p.n}"/><span style="color:#fff;">${p.n}</span><span class="player-number">${p.num}</span></li>`).join('');
+      listaSup.innerHTML = suplentes.map(p => `<li style="padding:8px 10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:8px; display:flex; align-items:center; gap:10px;"><img style="width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,0.12); object-fit:cover;" src="${p.img}" alt="${p.n}"/><span style="color:#fff;">${p.n}</span><span class="player-number">${p.num}</span></li>`).join('');
 
       document.getElementById('plantilla-title').textContent = `Plantilla — ${equipo}`;
       modal.style.display = 'block';
