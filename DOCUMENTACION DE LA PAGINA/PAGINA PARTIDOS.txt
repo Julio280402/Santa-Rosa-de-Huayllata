@@ -1,0 +1,408 @@
+DOCUMENTACIÓN COMPLETA - PÁGINA PARTIDOS
+🎯 Estructura del sistema
+El sistema de partidos funciona con 3 archivos principales :
+
+partidos.html→ Estructura visual
+assets/css/style.css→ Estilos
+assets/js/script.js→ AQUÍ ES DONDE EDITAS TODO
+📂 ARCHIVO PRINCIPAL:assets/js/script.js
+🔍 Ubicación del Array de Partidos
+Busca esta sección en el archivo (línea aproximada 50-60):
+
+Javascript
+Copiar
+// ======================================== 
+// DATOS DE PARTIDOS - FIXTURE COMPLETO 
+// ==========================================
+
+const partidosData = [
+   // ⬇️ AQUÍ ESTÁN TODOS LOS PARTIDOS ⬇️
+⚽ CÓMO AGREGAR PARTIDOS PRÓXIMOS DE FÚTBOL
+📍 Ubicación: Después de la línea que dice// PARTIDOS PRÓXIMOS - FÚTBOL
+📝 Plantilla para copiar:
+Javascript
+Copiar
+{
+   id : 999 ,                                     // ← Número único (no repetir) 
+  deporte : "futbol" ,                           // ← Siempre "futbol" 
+  estado : "proximo" ,                           // ← Siempre "proximo" 
+  equipos : [ "Equipo Local" , "Equipo Visitante" ], // ← Nombres de equipos 
+  fecha : "2025-12-25" ,                         // ← Formato: AAAA-MM-DD 
+  hora : "15:30" ,                               // ← Formato: HH:MM 
+  cancha : "Cancha 1"                           // ← Nombre de la cancha
+},
+🎯 Ejemplo real:
+Javascript
+Copiar
+// Agregar DESPUÉS del último partido próximo de fútbol
+{
+  id : 37 ,
+   deporte : "futbol" ,
+   estado : "proximo" ,
+   equipos : [ "Santa Rosa FC" , "Nuevo Rival" ],
+   fecha : "2025-11-15" ,
+   hora : "16:00" ,
+   cancha : "Cancha 2"
+},
+🏐 CÓMO AGREGAR PARTIDOS PRÓXIMOS DE VÓLEY
+📍 Ubicación: Después de la línea que dice// PARTIDOS PRÓXIMOS - VÓLEY
+📝 Plantilla para copiar:
+Javascript
+Copiar
+{
+   id : 999 ,                                     // ← Número único (no repetir) 
+  deporte : "voley" ,                            // ← Siempre "voley" 
+  estado : "proximo" ,                           // ← Siempre "proximo" 
+  equipos : [ "Equipo Local" , "Equipo Visitante" ], // ← Nombres de equipos 
+  fecha : "2025-12-25" ,                         // ← Formato: AAAA-MM-DD 
+  hora : "18:00" ,                               // ← Formato: HH:MM 
+  cancha : "Cancha 2"                           // ← Nombre de la cancha
+},
+🎯 Ejemplo real:
+Javascript
+Copiar
+// Agregar DESPUÉS del último partido próximo de vóley
+{
+  id : 137 ,
+   deporte : "voley" ,
+   estado : "proximo" ,
+   equipos : [ "Voleibol Santa Rosa" , "Nuevas Rivales" ],
+   fecha : "2025-11-18" ,
+   hora : "17:30" ,
+   cancha : "Cancha 1"
+},
+⚽ CÓMO AGREGAR PARTIDOS JUGADOS DE FÚTBOL
+📍 Ubicación: Busca esta sección comentada:
+Javascript
+Copiar
+// ================================================= 
+// PARTIDOS JUGADOS - FÚTBOL (36 partidos) 
+// ============================================ 
+// NOTA: Estos partidos están comentados y se activan quitando /* */
+
+/*
+,{
+  identificación: 201,
+  // ... partidos comentados aquí
+}
+*/
+📝 Plantilla para agregar DENTRO de los comentarios:
+Javascript
+Copiar
+/*
+,{
+  id: 999, // ← Número único
+  deporte: "futbol", // ← Siempre "futbol"
+  estado: "jugado", // ← Siempre "jugado"
+  equipos: ["Equipo Local", "Equipo Visitante"],
+  ganador: "Equipo Local", // ← Debe coincidir con uno de los equipos
+  goles: {
+    "Equipo Local": [ // ← Goles del equipo local
+      {jugador: "Nombre Jugador", numero: 9 },
+      { jugador: "Otro Jugador", numero: 10 }
+    ],
+    "Equipo Visitante": [ // ← Goles del equipo visitante
+      { jugador: "Jugador Rival", numero: 7 }
+    ]
+  }
+}
+*/
+🎯 Ejemplo real:
+Javascript
+Copiar
+/*
+,{
+  identificación: 250,
+  deporte: "fútbol",
+  estado: "jugado",
+  equipos: ["Santa Rosa FC", "Deportivo Rival"],
+  ganador: "Santa Rosa FC",
+  goles: {
+    "Santa Rosa FC": [
+      {jugador: "Juan Pérez", número: 9 },
+      {jugador: "Carlos López", número: 11 },
+      { jugador: "Miguel Torres", número: 7 }
+    ],
+    "Deportivo Rival": [
+      { jugador: "Pedro Gómez", número: 10 }
+    ]
+  }
+}
+*/
+🏐 CÓMO AGREGAR PARTIDOS JUGADOS DE VÓLEY
+📍 Ubicación: Busca esta sección comentada:
+Javascript
+Copiar
+// ================================================= 
+// PARTIDOS JUGADOS - VÓLEY (36 partidos) 
+// ============================================ 
+// NOTA: Estos partidos están comentados y se activan quitando /* */
+
+/*
+,{
+  identificación: 301,
+  // ... partidos comentados aquí
+}
+*/
+📝 Plantilla para agregar DENTRO de los comentarios:
+Javascript
+Copiar
+/*
+,{
+  id: 999, // ← Número único
+  deporte: "voley", // ← Siempre "voley"
+  estado: "jugado", // ← Siempre "jugado"
+  equipos: ["Equipo Local", "Equipo Visitante"],
+  ganador: "Equipo Local", // ← Debe coincidir con uno de los equipos
+  conjuntos: {
+    "Equipo Local": 3, // ← Conjuntos ganados por equipo local
+    "Equipo Visitante": 1 // ← Conjuntos ganados por equipo visitante
+  }
+}
+*/
+🎯 Ejemplo real:
+Javascript
+Copiar
+/*
+,{
+  identificación: 350,
+  deporte: "voley",
+  estado: "jugado",
+  equipos: ["Voleibol Santa Rosa", "Rivales del Sur"],
+  ganador: "Voleibol Santa Rosa",
+  conjuntos: {
+    "Voleibol Santa Rosa": 3,
+    "Rivales del Sur": 2
+  }
+}
+*/
+🔄 CÓMO ACTIVAR/DESACTIVAR PARTIDOS
+✅ Para MOSTRAR un partido jugado:
+Busca el partido comentado entre/* */
+Elimina SOLO los caracteres /*del inicio
+Elimina SOLO los caracteres */del final
+Guarda el archivo
+ANTES:
+
+Javascript
+Copiar
+/*
+,{
+  identificación: 201,
+  deporte: "fútbol",
+  estado: "jugado",
+  equipos: ["Santa Rosa FC", "Los Tigres"],
+  Ganador: "Santa Rosa FC"
+}
+*/
+DESPUÉS:
+
+Javascript
+Copiar
+,{
+   id : 201 ,
+   deporte : "futbol" ,
+   estado : "jugado" ,
+   equipos : [ "Santa Rosa FC" , "Los Tigres" ],
+   ganador : "Santa Rosa FC"
+}
+❌ Para OCULTAR un partido próximo:
+Busca el partido visible
+Agrega /* al inicio
+Agrega */ al final
+Guarda el archivo
+ANTES:
+
+Javascript
+Copiar
+{
+   id : 1 ,
+   deporte : "futbol" ,
+   estado : "proximo" ,
+   equipos : [ "Santa Rosa FC" , "Huayllata United" ],
+   fecha : "2025-09-20" ,
+   hora : "15:00" ,
+   cancha : "Cancha 1"
+},
+DESPUÉS:
+
+Javascript
+Copiar
+/*
+{
+  identificación: 1,
+  deporte: "fútbol",
+  estado: "próximo",
+  equipos: ["Santa Rosa FC", "Huayllata United"],
+  fecha: "2025-09-20",
+  hora: "15:00",
+  cancha: "Cancha 1"
+},
+*/
+🔢 REGLAS IMPORTANTES PARA ID
+✅Rangos recomendados:
+Fútbol próximo: 1-100
+Vóley próximo: 101-200
+Fútbol jugado: 201-300
+Voleibol jugado: 301-400
+❌ NO repetir identificaciones:
+Javascript
+Copiar
+// ❌ MAL - ID duplicado 
+{ id : 1 , deporte : "futbol" , ... },
+{ id : 1 , deporte : "voley" , ... },    // ← ¡Error!
+
+// ✅ BIEN - IDs únicos 
+{ id : 1 , deporte : "futbol" , ... },
+{ id : 101 , deporte : "voley" , ... }, // ← ¡Correcto!
+📅 FORMATO DE FECHAS Y HORAS
+✅ Fechas correctas:
+Javascript
+Copiar
+fecha : "2025-01-15"     // ✅ Enero 15, 2025 
+fecha : "2025-12-31"     // ✅ Diciembre 31, 2025
+❌ Fechas incorrectas:
+Javascript
+Copiar
+fecha : "15/01/2025"     // ❌ Formato incorrecto 
+fecha : "2025-1-5"       // ❌ Falta el cero
+✅ Horas correctas:
+Javascript
+Copiar
+hora : "15:30"           // ✅ 3:30 PM 
+hora : "09:00"           // ✅ 9:00 AM
+❌ Horas incorrectas:
+Javascript
+Copiar
+hora : "3:30 PM"         // ❌ Formato incorrecto 
+hora : "9:00"            // ❌ Falta el cero
+🎯 EJEMPLOS COMPLETOS DE CASOS COMUNES
+📝 Caso 1: Agregar partido próximo de fútbol
+Javascript
+Copiar
+// Buscar la sección de próximos partidos de fútbol y agregar:
+{
+  id : 50 ,
+   deporte : "futbol" ,
+   estado : "proximo" ,
+   equipos : [ "Santa Rosa FC" , "Nuevo Equipo" ],
+   fecha : "2025-12-01" ,
+   hora : "16:00" ,
+   cancha : "Cancha 1"
+},
+📝 Caso 2: Finalizar un partido (próximo → jugado)
+Comentar el próximo partido:
+Javascript
+Copiar
+/*
+{
+  identificación: 1,
+  deporte: "fútbol",
+  estado: "próximo",
+  equipos: ["Santa Rosa FC", "Huayllata United"],
+  fecha: "2025-09-20",
+  hora: "15:00",
+  cancha: "Cancha 1"
+},
+*/
+Descomentar/agregar el partido jugado:
+Javascript
+Copiar
+,{
+   id : 1 ,
+   deporte : "futbol" ,
+   estado : "jugado" ,
+   equipos : [ "Santa Rosa FC" , "Huayllata United" ],
+   ganador : "Santa Rosa FC" ,
+   goles : {
+     "Santa Rosa FC" : [
+      { jugador : "Juan Pérez" , numero : 9 },
+      { jugador : "Carlos López" , número : 10 }
+    ],
+    "Huayllata Unida" : [
+      { jugador : "Pedro Mamani" , numero : 7 }
+    ]
+  }
+}
+📝 Caso 3: Partido de vóley sin goles (solo sets)
+Javascript
+Copiar
+,{
+   id : 350 ,
+   deporte : "voley" ,
+   estado : "jugado" ,
+   equipos : [ "Voleibol Santa Rosa" , "Las Panteras" ],
+   ganador : "Voleibol Santa Rosa" ,
+   sets : {
+     "Voleibol Santa Rosa" : 3 ,
+     "Las Panteras" : 1
+  }
+}
+⚠️ ERRORES COMUNES Y CÓMO EVITARLOS
+❌ Error 1: Falta la coma
+Javascript
+Copiar
+// MAL
+{
+  id : 1 ,
+   deporte : "futbol" 
+}   // ← Falta coma aquí
+{
+  id : 2 ,
+   deporte : "voley"
+}
+
+// BIEN
+{
+  id : 1 ,
+   deporte : "futbol" 
+}, // ← Coma agregada
+{
+  id : 2 ,
+   deporte : "voley"
+}
+❌ Error 2: Ganador no coincide con equipos
+Javascript
+Copiar
+// MAL
+{
+  equipos : [ "Santa Rosa FC" , "Los Tigres" ],
+   ganador : "Equipo Incorrecto"   // ← No está en la lista
+}
+
+// BIEN
+{
+  equipos : [ "Santa Rosa FC" , "Los Tigres" ],
+   ganador : "Santa Rosa FC"       // ← Coincide exactamente
+}
+❌ Error 3: Nombres inconsistentes en goles
+Javascript
+Copiar
+// MAL
+{
+  equipos : [ "Santa Rosa FC" , "Los Tigres" ],
+   goles : {
+     "Santa Rosa" : [...]   // ← Nombre incompleto
+  }
+}
+
+// BIEN
+{
+  equipos : [ "Santa Rosa FC" , "Los Tigres" ],
+   goles : {
+     "Santa Rosa FC" : [...] // ← Nombre exacto
+  }
+}
+🚀 PASOS PARA SUBIR CAMBIOS
+Editar assets/js/script.js
+Guardar el archivo
+Subirse al servidor/hosting
+Actualizar la página web
+Verificar que los cambios aparecen
+RESUMEN RÁPIDO
+Partidos próximos → Agregar directamente al array
+Partidos jugados → Agregar dentro de /* */y luego descomentar
+IDs únicos → No repetir números
+Fechas → FormatoYYYY-MM-DD
+Horas → FormatoHH:MM
+Ganador → Debe coincidir exactamente con el nombre del equipo
