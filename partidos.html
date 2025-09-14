@@ -23,9 +23,9 @@
     <!-- Menú -->
     <nav id="nav-menu" aria-label="Principal">
       <ul>
-        <li><a href="index.html" class="active">Inicio</a></li>
+        <li><a href="index.html">Inicio</a></li>
         <li><a href="equipos.html">Equipos</a></li>
-        <li><a href="partidos.html">Partidos</a></li>
+        <li><a href="partidos.html" class="active">Partidos</a></li>
         <li><a href="posiciones.html">Posiciones</a></li>
         <li><a href="bases.html">Bases</a></li>
         <li><a href="apoyo.html">Apoyo</a></li>
@@ -34,7 +34,42 @@
     </nav>
   </header>
 
-  
+  <!-- CONTENIDO PRINCIPAL -->
+  <main>
+    <div class="partidos-content">
+      <h1 class="section-title">Partidos</h1>
+      <p class="section-subtitle">Calendario de partidos de fútbol y vóley</p>
+
+      <!-- FILTROS Y BUSCADOR -->
+      <div class="partidos-filters">
+        <div class="filter-field">
+          <label for="search-team">Buscar equipo:</label>
+          <input type="text" id="search-team" placeholder="Nombre del equipo..." />
+        </div>
+        <div class="filter-field">
+          <label for="filter-status">Estado:</label>
+          <select id="filter-status">
+            <option value="todos">Todos</option>
+            <option value="proximos">Próximos</option>
+            <option value="jugados">Jugados</option>
+          </select>
+        </div>
+        <div class="filter-field">
+          <label for="filter-sport">Deporte:</label>
+          <select id="filter-sport">
+            <option value="todos">Todos</option>
+            <option value="futbol">Fútbol</option>
+            <option value="voley">Vóley</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- LISTA DE PARTIDOS -->
+      <div id="partidos-container">
+        <!-- Los partidos se cargarán dinámicamente aquí -->
+      </div>
+    </div>
+  </main>
 
   <!-- FOOTER -->
   <footer>
